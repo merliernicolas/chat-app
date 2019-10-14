@@ -4,15 +4,11 @@ import contactList from './components/contactList';
 
 
 function App() {
-    return contactList.map (contact => {
-     return <div className="App">
-      <Contact 
-        name="Salibor"
-        avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ancylostoma_duodenale_boca.jpg/640px-Ancylostoma_duodenale_boca.jpg"
-        online
-      />
-    </div> 
-    });
-}
+    return(
+    <div className="App">
+      {contactList.map ((cont) => {
+      return (<Contact name={cont.name} avatar={cont.avatar} online={cont.online} />)})}
+    </div>)
+};
 
 export default App;
