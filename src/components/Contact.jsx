@@ -4,19 +4,33 @@ import './Contact.css';
 const name = 'Salibor';
 const avatar = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ancylostoma_duodenale_boca.jpg/640px-Ancylostoma_duodenale_boca.jpg';
 const online = true;
-function Contact (props) {
-    return  ( 
-        <div className="Contact">
-            <img className="avatar" src={props.avatar} />
-            <article>
-                <h1 className="name">{props.name}</h1>
-                <div className="status">
-                    <h2 className="status-text">{props.online ? "online" : "offline"}</h2>
-                    <h2 className={props.online ? "status-online" : "status-offline"}></h2>
-                </div>
-            </article>
-        </div>
-    )
-};
+class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            online: false,
+        };
+    }
 
-export default Contact;
+    render() {
+        return  ( 
+            <div className="Contact"
+            onClick={event => {
+                const newOnline = !this.state.online;
+                this.setState({online: newOnline});
+            }}>
+                <img className="avatar" src={this.props.avatar} />
+                <article>
+                    <h1 className="name">{this.props.name}</h1>
+                    <div className="status">
+                        <div className={this.state.online ? "status-online" : "status-offline"}>                        
+                        </div>
+                        <h2 className="status-text">{this.state.online ? "online" : "offline"}</h2>
+                    </div>
+                </article>
+            </div>
+        )
+    }
+}
+
+    export default Contact;
